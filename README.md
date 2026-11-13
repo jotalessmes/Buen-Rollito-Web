@@ -49,3 +49,5 @@ La portada dispone de tamaños adaptados y prioridad de carga; las miniaturas us
 Los precios son orientativos y proceden de las capturas de Uber Eats. Las tres opiniones mostradas son fragmentos públicos estáticos consultados el 13 de noviembre de 2026; no se sincronizan automáticamente. Las imágenes de producto y del obrador incluyen recreaciones generadas. El botón de pedido abre Uber Eats, pero la selección no se transfiere al carrito.
 
 Antes de publicar el sitio, el negocio debe confirmar precios, carta, horarios, alérgenos, datos de contacto y permisos de uso de imágenes y reseñas. Configurar dominio y HTTPS, revisar las políticas y privacidad de los servicios externos (Google Maps y Google Fonts), y comprobar indexación y rendimiento con datos de producción. Las ramas son `develop` para trabajo y pruebas, y `main` para la versión revisada.
+
+Las imágenes del obrador se generan desde el PNG original a 768, 1000 y 1536 píxeles; el navegador elige el tamaño apropiado. La sección de los creadores utiliza el logotipo como imagen provisional.

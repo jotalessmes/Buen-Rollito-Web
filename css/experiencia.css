@@ -25,3 +25,6 @@
 @media(max-width:800px){.visit .visit-map-product{right:-12%}}
 /* Posición del chimney según la referencia */
 @media(min-width:801px){.visit .visit-map-product{height:clamp(330px,56vh,580px);right:-38%;top:-6%;transform:rotate(-15deg)}}
+
+/* Enlaces sociales: iconos ligeros y adaptados a la paleta de la marca. */
+.social-link{display:inline-flex;align-items:center;gap:.5em}.social-icon{display:block;width:1.5em;height:1.5em;flex:none}.social-link:hover .social-icon{transform:translateY(-2px)}.social-icon{transition:transform .2s ease}@media(prefers-reduced-motion:reduce){.social-icon{transition:none}}

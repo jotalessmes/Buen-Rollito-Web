@@ -17,9 +17,10 @@ async function main() {
     for (const size of [480, 800, 1254]) await convert(`assets/hero/${file}.png`, `assets/optimizados/${file}-${size}.webp`, size, 80);
   }
   await convert('assets/marca/logo-original.png', 'assets/optimizados/logo-128.webp', 128, 86);
-  await convert('assets/marca/logo-original.png', 'assets/optimizados/logo-320.webp', 320, 86);
+  await convert('assets/marca/logo-original.png', 'assets/optimizados/logo-320.webp', 320, 90);
+  await convert('assets/marca/logo-original.png', 'assets/optimizados/logo-632.webp', 632, 92);
   await convert('assets/secuencia/roll-00.png', 'assets/optimizados/historia-460.webp', 460, 82);
-  await convert('assets/galeria/obrador-generado.jpg', 'assets/optimizados/obrador-1000.webp', 1000, 80);
+  for (const size of [768, 1000, 1536]) await convert('assets/galeria/obrador-generado.png', `assets/optimizados/obrador-${size}.webp`, size, 90);
   console.log('Imágenes optimizadas generadas.');
 }
 main().catch(error => { console.error(error); process.exitCode = 1; });
