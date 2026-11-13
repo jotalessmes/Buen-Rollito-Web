@@ -58,4 +58,4 @@ Importa el repositorio con la raíz del proyecto en la carpeta raíz. `vercel.js
 
 Después de asignar un dominio definitivo, configura la URL canónica y el sitemap con ese dominio y verifica la indexación en Google Search Console. No uses como canónica una URL provisional.
 
-La bienvenida reproduce el vídeo optimizado `assets/video/cartel-apertura.mp4`, con cartel alternativo y mensajes aleatorios. La barra sigue la reproducción; se puede entrar sin esperar, se omite con movimiento reducido y se cierra ante errores o tras 12 segundos. El vídeo original de 1080p se conserva fuera del proyecto; la versión publicada está reducida a 960 × 540 y sin audio.
+La bienvenida muestra el cartel «Abierto» y mensajes aleatorios. La barra acompaña la animación de entrada; se puede entrar sin esperar, se omite con movimiento reducido y tiene un límite de seguridad. El vídeo anterior se conserva en `assets/video/` como recurso de trabajo, pero no forma parte del despliegue.

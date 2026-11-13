@@ -38,3 +38,14 @@
 .loading-line i{width:100%;height:100%;background:#bd6142;animation:none;transform:scaleX(0);transform-origin:left;border-radius:99px}
 .loading-skip{border:0;background:none;color:#30241d;font-size:12px;font-weight:800;letter-spacing:.07em;text-transform:uppercase;padding:10px;text-decoration:underline;text-underline-offset:4px}
 @media(max-width:600px){.loading-video{width:100%;border-radius:10px}.loading strong{font-size:clamp(25px,7vw,38px)}.loading{gap:18px}}
+
+/* Cartel abierto: composición fiel al diseño aprobado. */
+.loading{padding:0;gap:0;background:#f9dfc8;overflow:auto}
+.loading-art{position:relative;width:min(100%,calc(100svh * 16 / 9));flex:none}
+.loading .loading-art-image{width:100%;height:auto;margin:0;border-radius:0}
+.loading-copy{position:absolute;left:8%;right:8%;bottom:6%;display:flex;flex-direction:column;align-items:center;gap:clamp(12px,2vw,30px)}
+.loading strong{font-size:clamp(24px,3.3vw,58px);color:#50200e;white-space:nowrap}
+.loading-line{width:min(53%,740px);height:clamp(12px,2.1vw,32px);border:2px solid #51200f;background:#f9dfc8}
+.loading-line i{background:#d45224}
+.loading-skip{position:fixed;right:18px;bottom:10px;color:#50200e;font-size:10px}
+@media(max-width:700px){.loading-art{width:100%;}.loading-copy{position:relative;left:auto;right:auto;bottom:auto;gap:18px;padding:0 18px;margin-top:-8%}.loading strong{white-space:normal;font-size:clamp(26px,7vw,40px)}.loading-line{width:min(80%,390px);height:15px}.loading-skip{bottom:16px}}

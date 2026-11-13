@@ -1,13 +1,12 @@
 (() => {
   const loading = document.querySelector('#loading');
-  const video = document.querySelector('#loading-video');
   const message = document.querySelector('#loading-message');
   const bar = document.querySelector('#loading-progress');
   const skip = document.querySelector('#loading-skip');
   const messages = [
     'Estamos preparando el buen rollo',
     'El horno ya está calentito',
-    'Una vuelta más y abrimos',
+    'Ya estamos listos para darte la bienvenida',
     'Preparando algo recién hecho',
     'En León ya huele a buen rollo'
   ];
@@ -27,27 +26,25 @@
     clearTimeout(timer);
     cancelAnimationFrame(frame);
     bar.style.transform = 'scaleX(1)';
-    video.pause();
     loading.classList.add('done');
     loading.setAttribute('aria-hidden', 'true');
     skip.tabIndex = -1;
     if (document.activeElement === skip) document.querySelector('.skip').focus();
   }
-  function updateProgress() {
+  function updateProgress(time) {
     if (finished) return;
-    if (Number.isFinite(video.duration) && video.duration > 0) bar.style.transform = `scaleX(${Math.min(video.currentTime / video.duration, 1)})`;
+    if (startTime === null) startTime = time;
+    const progress = Math.min((time - startTime) / 2200, 1);
+    bar.style.transform = `scaleX(${progress})`;
+    if (progress >= 1) { finish(); return; }
     frame = requestAnimationFrame(updateProgress);
   }
+  let startTime = null;
   skip.addEventListener('click', finish);
-  video.addEventListener('ended', () => setTimeout(finish, 350), { once: true });
-  video.addEventListener('error', finish, { once: true });
   if (matchMedia('(prefers-reduced-motion: reduce)').matches) {
     finish();
     return;
   }
-  timer = setTimeout(finish, 12000);
-  video.src = video.dataset.src;
-  const playback = video.play();
-  if (playback && typeof playback.catch === 'function') playback.catch(finish);
+  timer = setTimeout(finish, 4000);
   frame = requestAnimationFrame(updateProgress);
 })();
