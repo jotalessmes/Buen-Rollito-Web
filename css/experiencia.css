@@ -117,7 +117,7 @@
 .order-dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
 .order-platform{display:flex;align-items:center;gap:10px;min-height:60px;padding:12px 16px;border-radius:16px;text-decoration:none;font-weight:800;box-shadow:0 5px 0 #30241d20;transition:transform .18s ease,box-shadow .18s ease}
 .order-platform:hover{transform:translateY(-2px);box-shadow:0 8px 0 #30241d20}
-.order-platform>span{display:grid;place-items:center;width:32px;height:32px;border:1px solid currentColor;border-radius:50%;font-family:'Barlow Condensed',Impact,sans-serif;font-size:20px;font-weight:900}
+.platform-logo{display:block;flex:none;object-fit:contain}.uber-logo{width:62px;height:48px;padding:5px;background:#fff;border-radius:8px}.glovo-mark{display:grid;place-items:center;flex:none;width:42px;height:42px;border-radius:50%;background:#30241d}.glovo-logo{width:28px;height:30px}.glovo-wordmark{font-size:17px;font-weight:900;letter-spacing:-.03em}
 .order-platform>b{margin-left:auto;font-size:22px;font-weight:500}
 .uber-platform{background:#30241d;color:#fff7e7}
 .glovo-platform{background:#ffc244;color:#30241d}

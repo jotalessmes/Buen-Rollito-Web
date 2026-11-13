@@ -26,6 +26,8 @@ test('los pedidos permiten elegir Uber Eats o Glovo y el teléfono es pulsable',
  assert.match(html, /href="tel:\+34697842285">697 84 22 85/);
  assert.match(html, /<span>UBER EATS<\/span>/);
  assert.match(html, /<span>GLOVO<\/span>/);
+ assert.match(html, /src="assets\/marca\/logo-ubereats\.svg"/);
+ assert.match(html, /src="assets\/marca\/logo-glovo\.svg"/);
 });
 test('el código de interacción es sintácticamente válido', () => assert.doesNotThrow(()=>new vm.Script(js)));
 
@@ -36,6 +38,8 @@ test('la salida de Vercel contiene la web y sus recursos, sin archivos internos'
  assert.match(deployed, /<meta name="robots" content="noindex,nofollow">/);
  assert.ok(fs.existsSync(path.join(output, 'robots.txt')));
  assert.ok(fs.existsSync(path.join(output, 'sitemap.xml')));
+ assert.ok(fs.existsSync(path.join(output, 'assets/marca/logo-ubereats.svg')));
+ assert.ok(fs.existsSync(path.join(output, 'assets/marca/logo-glovo.svg')));
  assert.match(fs.readFileSync(path.join(output, 'robots.txt'), 'utf8'), /Disallow: \/\n/);
  assert.ok(!deployed.includes('__SITE_URL__') && !deployed.includes('__ROBOTS__'));
  for (const match of deployed.matchAll(/(?:src|href)="((?:assets|css|js|productos)\/[^"?#]+)"/g)) {

@@ -8,7 +8,7 @@ const siteUrl = new URL(rawSiteUrl.includes('://') ? rawSiteUrl : `https://${raw
 const isProduction = process.env.VERCEL_ENV === 'production' || (!process.env.VERCEL_ENV && Boolean(process.env.SITE_URL));
 // dist is generated output only; never copy the project repository or source assets wholesale.
 fs.rmSync(out, { recursive: true, force: true });
-for (const item of ['index.html', 'css/experiencia.css', 'js/experiencia.js', 'js/loading.js', 'js/vendor', 'assets/optimizados', 'assets/marca/favicon.png', 'productos/optimizados']) {
+for (const item of ['index.html', 'css/experiencia.css', 'js/experiencia.js', 'js/loading.js', 'js/vendor', 'assets/optimizados', 'assets/marca', 'productos/optimizados']) {
   const source = path.join(root, item);
   const target = path.join(out, item);
   fs.mkdirSync(path.dirname(target), { recursive: true });
