@@ -22,7 +22,7 @@ npm run build
 npm test
 ```
 
-`npm run build` actualiza la carta incluida en el HTML a partir del catálogo de `js/experiencia.js`. Hay que ejecutarlo y guardar `index.html` después de cambiar el catálogo. Las pruebas comprueban los productos, recursos locales, metadatos y sintaxis del JavaScript. GitHub Actions ejecuta estas comprobaciones en `develop` y `main`.
+`npm run build` actualiza la carta incluida en el HTML a partir del catálogo de `js/experiencia.js` y genera `dist/` con los archivos públicos necesarios. Hay que ejecutarlo y guardar `index.html` después de cambiar el catálogo. Las pruebas comprueban los productos, recursos locales, metadatos y sintaxis del JavaScript. GitHub Actions ejecuta estas comprobaciones en `develop` y `main`.
 
 Para regenerar las imágenes WebP desde los originales PNG/JPG:
 
@@ -51,3 +51,9 @@ Los precios son orientativos y proceden de las capturas de Uber Eats. Las tres o
 Antes de publicar el sitio, el negocio debe confirmar precios, carta, horarios, alérgenos, datos de contacto y permisos de uso de imágenes y reseñas. Configurar dominio y HTTPS, revisar las políticas y privacidad de los servicios externos (Google Maps y Google Fonts), y comprobar indexación y rendimiento con datos de producción. Las ramas son `develop` para trabajo y pruebas, y `main` para la versión revisada.
 
 Las imágenes del obrador se generan desde el PNG original a 768, 1000 y 1536 píxeles; el navegador elige el tamaño apropiado. La sección de los creadores utiliza el logotipo como imagen provisional.
+
+## Despliegue en Vercel
+
+Importa el repositorio con la raíz del proyecto en la carpeta raíz. `vercel.json` configura el proyecto estático, Node 22, `npm run build` y `dist` como carpeta de salida. La instalación de producción omite dependencias de desarrollo y scripts; `sharp` solo es necesario en desarrollo para regenerar las imágenes, que ya están incluidas en el repositorio. Si el panel tiene configuraciones manuales incompatibles (directorio raíz o comandos), revísalas. Cada cambio en `main` puede iniciar un despliegue automático si la integración Git está activada.
+
+Después de asignar un dominio definitivo, configura la URL canónica y el sitemap con ese dominio y verifica la indexación en Google Search Console. No uses como canónica una URL provisional.

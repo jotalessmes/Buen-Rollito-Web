@@ -20,3 +20,21 @@ test('la página tiene idioma, metadatos, esquema local y enlace de pedido', () 
  const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1]);assert.equal(schema.name,'Buen Rollito Chimney Cake');assert.equal(schema.address.addressLocality,'León');
 });
 test('el código de interacción es sintácticamente válido', () => assert.doesNotThrow(()=>new vm.Script(js)));
+
+test('la salida de Vercel contiene la web y sus recursos, sin archivos internos', () => {
+ const output = path.join(root, 'dist');
+ const deployed = fs.readFileSync(path.join(output, 'index.html'), 'utf8');
+ for (const match of deployed.matchAll(/(?:src|href)="((?:assets|css|js|productos)\/[^"?#]+)"/g)) {
+   assert.ok(fs.existsSync(path.join(output, match[1])), match[1]);
+ }
+ for (const match of deployed.matchAll(/(?:srcset|imagesrcset)="([^"]+)"/g)) {
+   for (const candidate of match[1].split(',')) {
+     const file = candidate.trim().split(/\s+/)[0];
+     assert.ok(fs.existsSync(path.join(output, file)), file);
+   }
+ }
+ for (const p of products) for (const size of [320, 512]) assert.ok(fs.existsSync(path.join(output, `productos/optimizados/${p[2]}-${size}.webp`)));
+ for (const privatePath of ['.git', 'node_modules', 'documentacion', 'scripts', 'package.json', 'README.md']) assert.equal(fs.existsSync(path.join(output, privatePath)), false, privatePath);
+ const config = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8').replace(/^\uFEFF/, ''));
+ assert.equal(config.outputDirectory, 'dist');
+});

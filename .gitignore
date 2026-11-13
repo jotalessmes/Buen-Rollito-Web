@@ -2,3 +2,5 @@ node_modules/
 codex-seo/
 *.log
 .DS_Store
+dist/
+.vercel/
