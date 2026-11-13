@@ -49,3 +49,27 @@
 .loading-line i{background:#d45224}
 .loading-skip{position:fixed;right:18px;bottom:10px;color:#50200e;font-size:10px}
 @media(max-width:700px){.loading-art{width:100%;}.loading-copy{position:relative;left:auto;right:auto;bottom:auto;gap:18px;padding:0 18px;margin-top:-8%}.loading strong{white-space:normal;font-size:clamp(26px,7vw,40px)}.loading-line{width:min(80%,390px);height:15px}.loading-skip{bottom:16px}}
+
+/* Historia en móvil: capítulos arriba y una ilustración fija debajo. */
+@media(max-width:600px){
+  .story-scroll{display:grid;grid-template-columns:minmax(0,1fr);padding:0 6%;gap:0}
+  .story-chapters,.story .story-visual{grid-column:1;grid-row:1}
+  .story-chapters{position:relative;z-index:2;pointer-events:none}
+  .story-chapter{min-height:max(100svh,720px);align-items:flex-start;padding:105px 0 44svh}
+  .story-heading{width:100%;pointer-events:auto}
+  .story-heading>p{max-width:35rem}
+  .story h2{font-size:clamp(42px,10.5vw,62px);margin:18px 0;line-height:.88}
+  .story-heading>p{font-size:14px;line-height:1.5;margin:12px 0}
+  .story .underlink{margin-top:10px}
+  .story .story-visual{align-self:start;position:sticky;top:55svh;height:38svh;min-height:0;overflow:visible;pointer-events:none}
+  .story .story-visual .story-halo{width:min(52vw,30svh);max-width:260px}
+  .story .story-product{width:min(70vw,38svh);height:auto;object-fit:contain}
+  .story .story-founders-visual img{width:min(45vw,24svh);height:auto}
+  .story .story-note{width:55px;height:55px;top:4%;right:8%}
+}
+@media(max-width:600px){
+  .story .story-visual.show-founders{top:68svh;height:23svh}
+  .story .story-visual.show-founders .story-halo{width:min(42vw,20svh)}
+  .story .story-founders-visual img{width:min(40vw,18svh)}
+  .story-founders-visual span{margin-top:6px}
+}

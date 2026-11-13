@@ -59,3 +59,5 @@ Importa el repositorio con la raíz del proyecto en la carpeta raíz. `vercel.js
 Después de asignar un dominio definitivo, configura la URL canónica y el sitemap con ese dominio y verifica la indexación en Google Search Console. No uses como canónica una URL provisional.
 
 La bienvenida muestra el cartel «Abierto» y mensajes aleatorios. La barra acompaña la animación de entrada; se puede entrar sin esperar, se omite con movimiento reducido y tiene un límite de seguridad. El vídeo anterior se conserva en `assets/video/` como recurso de trabajo, pero no forma parte del despliegue.
+
+En móviles, la historia presenta el texto arriba y mantiene la ilustración debajo durante el desplazamiento por los dos capítulos. En escritorio se conserva la composición en dos columnas.
