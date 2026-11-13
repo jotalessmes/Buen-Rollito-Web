@@ -73,3 +73,8 @@
   .story .story-founders-visual img{width:min(40vw,18svh)}
   .story-founders-visual span{margin-top:6px}
 }
+@media(max-width:600px){
+  .story-chapter{padding-bottom:52svh}
+  .story .story-visual{top:58svh;height:36svh}
+  .story .story-visual.show-founders{top:72svh;height:20svh}
+}
