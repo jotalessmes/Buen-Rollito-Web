@@ -17,7 +17,15 @@ test('las referencias locales de la página existen', () => {
 });
 test('la página tiene idioma, metadatos, esquema local y enlace de pedido', () => {
  assert.match(html,/<html lang="es">/);assert.match(html,/<meta name="description"/);assert.match(html,/<h1\b/);assert.match(html,/application\/ld\+json/);assert.match(html,/ubereats\.com/);
- const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1]);assert.equal(schema.name,'Buen Rollito Chimney Cake');assert.equal(schema.address.addressLocality,'León');
+ const schema=JSON.parse(html.match(/<script type="application\/ld\+json">([^<]+)<\/script>/)[1]);assert.equal(schema.name,'Buen Rollito Chimney Cake');assert.equal(schema.address.addressLocality,'León');assert.equal(schema.telephone,'+34 697 84 22 85');
+});
+test('los pedidos permiten elegir Uber Eats o Glovo y el teléfono es pulsable', () => {
+ assert.match(html, /<dialog[^>]+id="order-dialog"/);
+ assert.match(html, /data-order-selector/);
+ assert.match(html, /https:\/\/glovoapp\.com\/es\/es\/leon\/stores\/buen-rollito-chimney-cake-leon/);
+ assert.match(html, /href="tel:\+34697842285">697 84 22 85/);
+ assert.match(html, /<span>UBER EATS<\/span>/);
+ assert.match(html, /<span>GLOVO<\/span>/);
 });
 test('el código de interacción es sintácticamente válido', () => assert.doesNotThrow(()=>new vm.Script(js)));
 

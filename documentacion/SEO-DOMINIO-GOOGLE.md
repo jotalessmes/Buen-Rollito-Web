@@ -4,7 +4,7 @@
 
 - Canonical, Open Graph y Twitter Cards se completan en compilación con el dominio de producción.
 - El JSON-LD `Bakery` incluye URL, nombre, descripción, dirección, coordenadas, mapa, logotipo e Instagram.
-- No se incluyen teléfono ni horarios hasta que el negocio los confirme.
+- El teléfono facilitado por el negocio (`+34 697 84 22 85`) figura como contacto `tel:` y en el JSON-LD; los horarios no se incluyen hasta confirmarlos.
 - No se publica `aggregateRating` para opiniones propias del negocio.
 - `dist/sitemap.xml` incluye la portada; `dist/robots.txt` la anuncia en producción.
 - Los builds de vista previa/local quedan marcados `noindex,nofollow` y no exponen el sitemap de producción.
@@ -22,8 +22,8 @@
 - [ ] Verificar propiedad de Dominio en Search Console mediante TXT y enviar `/sitemap.xml`.
 - [ ] Inspeccionar la URL principal y solicitar indexación.
 - [ ] Reclamar/verificar la ficha existente de Google Business Profile y añadir el sitio web definitivo.
-- [ ] Añadir Uber Eats como enlace de pedido cuando el tipo de ficha lo permita.
-- [ ] Confirmar categoría, horarios, teléfono y ubicación con el negocio; revisar coherencia de nombre/dirección/teléfono.
+- [ ] Añadir los enlaces de Uber Eats y Glovo como opciones de pedido cuando el tipo de ficha lo permita.
+- [ ] Confirmar categoría, horarios y ubicación con el negocio; revisar coherencia de nombre/dirección/teléfono.
 - [ ] Sustituir imágenes conceptuales por fotos reales autorizadas cuando estén disponibles.
 
 ## Límites

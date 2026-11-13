@@ -46,9 +46,9 @@ La portada dispone de tamaños adaptados y prioridad de carga; las miniaturas us
 
 ## Contenido y publicación
 
-Los precios son orientativos y proceden de las capturas de Uber Eats. Las tres opiniones mostradas son fragmentos públicos estáticos consultados el 13 de noviembre de 2026; no se sincronizan automáticamente. Las imágenes de producto y del obrador incluyen recreaciones generadas. El botón de pedido abre Uber Eats, pero la selección no se transfiere al carrito.
+Los precios son orientativos y proceden de las capturas de Uber Eats. Las tres opiniones mostradas son fragmentos públicos estáticos consultados el 13 de noviembre de 2026; no se sincronizan automáticamente. Las imágenes de producto y del obrador incluyen recreaciones generadas. Los botones principales de pedido abren un selector entre Uber Eats y Glovo; ambos enlaces llevan a las fichas del negocio. El pie mantiene accesos directos a las dos plataformas. La selección de producto no se transfiere al carrito.
 
-Antes de publicar el sitio, el negocio debe confirmar precios, carta, horarios, alérgenos, datos de contacto y permisos de uso de imágenes y reseñas. Configurar dominio y HTTPS, revisar las políticas y privacidad de los servicios externos (Google Maps y Google Fonts), y comprobar indexación y rendimiento con datos de producción. Las ramas son `develop` para trabajo y pruebas, y `main` para la versión revisada.
+Antes de publicar el sitio, el negocio debe confirmar precios, carta, horarios y alérgenos, y permisos de uso de imágenes y reseñas. Configurar dominio y HTTPS, revisar las políticas y privacidad de los servicios externos (Google Maps y Google Fonts), y comprobar indexación y rendimiento con datos de producción. Las ramas son `develop` para trabajo y pruebas, y `main` para la versión revisada.
 
 Las imágenes del obrador se generan desde el PNG original a 768, 1000 y 1536 píxeles; el navegador elige el tamaño apropiado. La sección de los creadores utiliza el logotipo como imagen provisional.
 
@@ -80,8 +80,8 @@ Para que el dominio personalizado quede como URL canónica en Vercel:
 ### Perfil de Empresa de Google (Google Business Profile)
 
 1. Busca primero “Buen Rollito Chimney Cake” en [Google Maps](https://www.google.com/maps) y reclama o solicita acceso a la ficha existente. No crees una segunda ficha si ya existe.
-2. Completa el proceso de verificación que Google ofrezca al propietario. En **Editar perfil → Información de contacto → Sitio web**, añade la URL canónica completa con HTTPS. En pedidos, conserva o configura el enlace directo de Uber Eats si esa opción está disponible en la ficha.
-3. Comprueba nombre real del negocio, categoría principal, dirección `Av. del Padre Isla, 7, 24002 León`, pin del mapa, teléfono, horarios y días festivos. Mantén nombre, dirección y teléfono iguales en la web, la ficha y otros directorios. Los horarios y el teléfono todavía deben confirmarlos los responsables; no se han inventado ni se muestran como datos estructurados.
+2. Completa el proceso de verificación que Google ofrezca al propietario. En **Editar perfil → Información de contacto → Sitio web**, añade la URL canónica completa con HTTPS. En pedidos, conserva o configura los enlaces de pedido de Uber Eats y Glovo si esas opciones están disponibles en la ficha.
+3. Comprueba nombre real del negocio, categoría principal, dirección `Av. del Padre Isla, 7, 24002 León`, pin del mapa, teléfono, horarios y días festivos. Mantén nombre, dirección y teléfono iguales en la web, la ficha y otros directorios. El teléfono facilitado por el negocio es `+34 697 84 22 85` y se muestra como enlace de llamada y en los datos estructurados. Los horarios todavía deben confirmarlos los responsables.
 4. Añade fotos auténticas y autorizadas del local, fachada, productos y equipo; responde a las reseñas desde la ficha. No ofrezcas incentivos por reseñas ni publiques valoraciones falsas.
 5. Una vez verificada, revisa en la ficha que el botón **Sitio web** abre el dominio final, que el enlace de pedido funciona y que el pin lleva a la entrada correcta.
 

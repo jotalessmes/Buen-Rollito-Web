@@ -103,3 +103,24 @@
 @media(min-width:801px){
   .story .story-product{width:min(36vw,500px,68vh);max-height:68vh;height:auto;object-fit:contain}
 }
+.visit-phone{display:inline-flex;align-items:center;min-height:48px;padding:0 18px;border:1px solid currentColor;border-radius:999px;font-weight:800;text-decoration:none}
+.visit-phone:hover{background:#f5e4bf}
+.order-dialog{width:min(92vw,520px);max-width:none;padding:0;border:1px solid #30241d24;border-radius:26px;background:#f4ead7;color:#30241d;box-shadow:0 28px 90px #160d0980}
+.order-dialog[open]{animation:order-dialog-in .24s ease-out both}
+.order-dialog::backdrop{background:#1b120dc9;backdrop-filter:blur(7px)}
+.order-dialog-card{position:relative;padding:clamp(30px,6vw,48px)}
+.order-dialog-card .eyebrow{display:block;margin:0 44px 18px 0;font-size:10px;font-weight:800;letter-spacing:.14em}
+.order-dialog-card h2{max-width:390px;margin:0;font-family:'Barlow Condensed',Impact,sans-serif;font-size:clamp(38px,8vw,58px);font-weight:900;line-height:.95;text-transform:uppercase}
+.order-dialog-card>p{margin:14px 0 25px;font-size:15px;line-height:1.5}
+.order-dialog-card form{position:absolute;top:20px;right:20px;margin:0}
+.order-dialog-close{width:42px;height:42px;border:1px solid #30241d3a;border-radius:50%;background:transparent;color:inherit;font:inherit;font-size:26px;line-height:1;cursor:pointer}
+.order-dialog-actions{display:grid;grid-template-columns:1fr 1fr;gap:12px}
+.order-platform{display:flex;align-items:center;gap:10px;min-height:60px;padding:12px 16px;border-radius:16px;text-decoration:none;font-weight:800;box-shadow:0 5px 0 #30241d20;transition:transform .18s ease,box-shadow .18s ease}
+.order-platform:hover{transform:translateY(-2px);box-shadow:0 8px 0 #30241d20}
+.order-platform>span{display:grid;place-items:center;width:32px;height:32px;border:1px solid currentColor;border-radius:50%;font-family:'Barlow Condensed',Impact,sans-serif;font-size:20px;font-weight:900}
+.order-platform>b{margin-left:auto;font-size:22px;font-weight:500}
+.uber-platform{background:#30241d;color:#fff7e7}
+.glovo-platform{background:#ffc244;color:#30241d}
+@keyframes order-dialog-in{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+@media(max-width:520px){.order-dialog-actions{grid-template-columns:1fr}.order-dialog-card{padding:34px 24px 26px}.visit-phone{min-height:44px}.mobile-order{border:0;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer}}
+@media(prefers-reduced-motion:reduce){.order-dialog[open]{animation:none}.order-platform{transition:none}}

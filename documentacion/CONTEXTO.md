@@ -4,6 +4,8 @@
 - Buen Rollito Chimney Cake, avenida Padre Isla 7, 24002 León. Instagram: https://www.instagram.com/buenrollito.leon/
 - Apertura en 2026. Fundadores: Iván Aller y Raúl López. Fuente: https://www.heraldodeleon.es/leon/joya-reposteria-hungara-ha-llegado-leon-dispuesta-quedarse/20260510090359088517.amp.html
 - Uber Eats: https://www.ubereats.com/es-en/store/buen-rollito-chimney/FR-O0IdEUKGz2xKdPgEbtg
+- Glovo: https://glovoapp.com/es/es/leon/stores/buen-rollito-chimney-cake-leon
+- Teléfono facilitado por el negocio: +34 697 84 22 85
 - La carta y precios se basan en las capturas de Uber Eats entregadas por el usuario. Confirmar precio, disponibilidad, horarios y alérgenos con el negocio antes de publicar.
 - Opiniones de la web: resúmenes, no citas textuales, del directorio https://www.espainfo.com/leon-capital/postres. No se han inventado usuarios o puntuaciones.
 
@@ -21,7 +23,7 @@ Experiencia local que haga protagonista el chimney cake, explique el producto, f
 `assets/secuencia/roll-00.png` a `roll-15.png` son 16 fotogramas derivados del recorte de canela mediante pequeños giros 2D. La secuencia se conserva como recurso anterior, pero ya no se reproduce en la sección de historia; no es un modelo 3D ni una grabación de horneado. La animación respeta la preferencia de movimiento reducido. La imagen del obrador es conceptual. Las imágenes de carta tienen fondo blanco integrado con CSS, no transparencia real.
 
 ## Pedidos
-Los botones abren el perfil de Uber Eats. La selección local no se transmite al carrito de Uber Eats. No se procesan pagos ni se gestionan pedidos dentro del prototipo.
+Los botones principales abren un diálogo para elegir Uber Eats o Glovo; el pie incluye enlaces directos a ambas plataformas. La selección local no se transmite al carrito de reparto. No se procesan pagos ni se gestionan pedidos dentro del prototipo.
 
 ## Ajuste de portada
 La portada se reorganizó siguiendo la referencia visual aportada: navegación superior distribuida, marca centrada, titular de gran tamaño y chimney transparente protagonista. La imagen es una recreación para el prototipo.
