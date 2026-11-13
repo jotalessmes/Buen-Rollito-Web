@@ -38,3 +38,22 @@ test('la salida de Vercel contiene la web y sus recursos, sin archivos internos'
  const config = JSON.parse(fs.readFileSync(path.join(root, 'vercel.json'), 'utf8').replace(/^\uFEFF/, ''));
  assert.equal(config.outputDirectory, 'dist');
 });
+
+test('la bienvenida usa el vídeo publicado y permite entrar si hay errores', () => {
+ const code = fs.readFileSync(path.join(root, 'js/loading.js'), 'utf8');
+ const listeners = {};
+ const video = {dataset:{src:'assets/video/cartel-apertura.mp4'}, duration:8, currentTime:0, pause(){}, play(){return Promise.resolve()}, addEventListener(name, fn){listeners[name]=fn}};
+ const bar = {style:{}};
+ const message = {};
+ const skip = {addEventListener(name, fn){listeners.skip=fn}};
+ const loading = {classList:{add(name){loading.state=name}},setAttribute(name, value){loading[name]=value}};
+ const elements = {'#loading':loading, '#loading-video':video, '#loading-message':message, '#loading-progress':bar, '#loading-skip':skip};
+ const context = {document:{querySelector: selector => elements[selector], activeElement:null}, sessionStorage:{getItem(){return null},setItem(){}}, Math, matchMedia:()=>({matches:false}), setTimeout:()=>1, clearTimeout(){}, requestAnimationFrame:()=>1, cancelAnimationFrame(){}};
+ vm.runInNewContext(code, context, {timeout:1000});
+ assert.ok(message.textContent.length > 0);
+ assert.equal(video.src, 'assets/video/cartel-apertura.mp4');
+ assert.ok(fs.existsSync(path.join(root,'dist',video.src)));
+ listeners.error();
+ assert.equal(loading.state, 'done');
+ assert.equal(loading['aria-hidden'], 'true');
+});
