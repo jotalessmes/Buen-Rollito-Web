@@ -100,3 +100,6 @@
   .story .story-visual,.story .story-product,.story .story-founders-visual{transition:none;transform:none}
 }
 .hero-location .scroll-cue{display:block;width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:translateY(-2px) rotate(45deg)}
+@media(min-width:801px){
+  .story .story-product{width:min(36vw,500px,68vh);max-height:68vh;height:auto;object-fit:contain}
+}
