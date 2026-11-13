@@ -58,7 +58,36 @@ Importa el repositorio con la raíz del proyecto en la carpeta raíz. `vercel.js
 
 Speed Insights se integra con `@vercel/speed-insights`: `js/speed-insights.js` llama a `injectSpeedInsights()` y `scripts/build-site.cjs` lo empaqueta para la web estática. Hay que habilitar **Speed Insights** en el panel del proyecto de Vercel; al publicar una compilación posterior, Vercel servirá la ruta de captura. Los datos de rendimiento aparecerán cuando haya visitas reales y el panel las haya procesado. Esta integración mide Core Web Vitals; no es un contador de visitas ni analítica de conversiones.
 
-Después de asignar un dominio definitivo, configura la URL canónica y el sitemap con ese dominio y verifica la indexación en Google Search Console. No uses como canónica una URL provisional.
+### Dominio, SEO e indexación en Google
+
+La compilación genera `canonical`, Open Graph, Twitter Cards, datos estructurados `Bakery`, `robots.txt` y `sitemap.xml`. Usa `SITE_URL` si está definida; en Vercel utiliza `VERCEL_PROJECT_PRODUCTION_URL` y, si no está disponible, `VERCEL_URL`. En producción permite el rastreo y en local/previews aplica `noindex,nofollow` y bloquea el rastreo para evitar que Google indexe versiones temporales. La página es una landing de una sola URL; sus secciones con anclas no se añaden como páginas separadas al sitemap.
+
+Para que el dominio personalizado quede como URL canónica en Vercel:
+
+1. Añade el dominio en **Project → Settings → Domains** y sigue allí las instrucciones DNS. Elige una variante principal (`https://tudominio.es`) y redirige las variantes alternativas (`www` o dominio raíz) a ella.
+2. En **Project → Settings → Environment Variables**, activa **Automatically expose System Environment Variables**. Comprueba que el build de producción recibe `VERCEL_PROJECT_PRODUCTION_URL`. Alternativa: crea `SITE_URL=https://tudominio.es` para el entorno **Production**. No incluyas ruta final.
+3. Lanza un nuevo deployment de producción después de asignar el dominio. Comprueba que `https://tudominio.es/` responde, y que `https://tudominio.es/robots.txt` y `https://tudominio.es/sitemap.xml` mencionan el dominio definitivo. Revisa el canonical del HTML publicado.
+4. El dominio no sustituye las tareas de Google: hay que verificar e indexar el sitio con Search Console y completar la ficha de Empresa.
+
+### Google Search Console
+
+1. Abre [Google Search Console](https://search.google.com/search-console/) y añade una propiedad **Dominio** con `tudominio.es`, sin `https://` ni rutas.
+2. Copia el registro TXT que proporciona Google y añádelo en la zona DNS que realmente gestiona el dominio (Vercel DNS solo si delegas allí los nameservers; si no, usa el proveedor DNS actual). Mantén el TXT para conservar la verificación y pulsa **Verificar**.
+3. En Search Console → **Sitemaps**, envía `https://tudominio.es/sitemap.xml`.
+4. Usa **Inspección de URL** con `https://tudominio.es/`, comprueba la URL canónica seleccionada y pulsa **Solicitar indexación** si procede. Google decide cuándo y si indexar; la solicitud no garantiza inclusión inmediata.
+5. Revisa después las páginas indexadas, problemas de experiencia móvil y Core Web Vitals. Speed Insights mide rendimiento de visitas, no sustituye Search Console ni mide por sí solo pedidos o conversiones.
+
+### Perfil de Empresa de Google (Google Business Profile)
+
+1. Busca primero “Buen Rollito Chimney Cake” en [Google Maps](https://www.google.com/maps) y reclama o solicita acceso a la ficha existente. No crees una segunda ficha si ya existe.
+2. Completa el proceso de verificación que Google ofrezca al propietario. En **Editar perfil → Información de contacto → Sitio web**, añade la URL canónica completa con HTTPS. En pedidos, conserva o configura el enlace directo de Uber Eats si esa opción está disponible en la ficha.
+3. Comprueba nombre real del negocio, categoría principal, dirección `Av. del Padre Isla, 7, 24002 León`, pin del mapa, teléfono, horarios y días festivos. Mantén nombre, dirección y teléfono iguales en la web, la ficha y otros directorios. Los horarios y el teléfono todavía deben confirmarlos los responsables; no se han inventado ni se muestran como datos estructurados.
+4. Añade fotos auténticas y autorizadas del local, fachada, productos y equipo; responde a las reseñas desde la ficha. No ofrezcas incentivos por reseñas ni publiques valoraciones falsas.
+5. Una vez verificada, revisa en la ficha que el botón **Sitio web** abre el dominio final, que el enlace de pedido funciona y que el pin lleva a la entrada correcta.
+
+La web usa datos estructurados `Bakery` para describir negocio, dirección, coordenadas y URL. No incluye estrellas agregadas: las reseñas propias de una empresa no deben marcarse para intentar obtener estrellas enriquecidas en Google. El mapa incrustado puede facilitar la orientación, pero por sí solo no asegura mejores posiciones. El perfil verificado, los datos correctos y contenido local útil son las tareas clave.
+
+Más contexto y verificaciones: [documentacion/SEO-DOMINIO-GOOGLE.md](documentacion/SEO-DOMINIO-GOOGLE.md).
 
 La bienvenida muestra el cartel «Abierto» y mensajes aleatorios. La barra acompaña la animación de entrada; se puede entrar sin esperar, se omite con movimiento reducido y tiene un límite de seguridad. El vídeo anterior se conserva en `assets/video/` como recurso de trabajo, pero no forma parte del despliegue.
 

@@ -24,6 +24,12 @@ test('el código de interacción es sintácticamente válido', () => assert.does
 test('la salida de Vercel contiene la web y sus recursos, sin archivos internos', () => {
  const output = path.join(root, 'dist');
  const deployed = fs.readFileSync(path.join(output, 'index.html'), 'utf8');
+ assert.match(deployed, /<link rel="canonical" href="http:\/\/localhost:8000\/">/);
+ assert.match(deployed, /<meta name="robots" content="noindex,nofollow">/);
+ assert.ok(fs.existsSync(path.join(output, 'robots.txt')));
+ assert.ok(fs.existsSync(path.join(output, 'sitemap.xml')));
+ assert.match(fs.readFileSync(path.join(output, 'robots.txt'), 'utf8'), /Disallow: \/\n/);
+ assert.ok(!deployed.includes('__SITE_URL__') && !deployed.includes('__ROBOTS__'));
  for (const match of deployed.matchAll(/(?:src|href)="((?:assets|css|js|productos)\/[^"?#]+)"/g)) {
    assert.ok(fs.existsSync(path.join(output, match[1])), match[1]);
  }
