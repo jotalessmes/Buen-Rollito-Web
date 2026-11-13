@@ -13,7 +13,7 @@ test('la carta está en HTML y sus 24 productos tienen imágenes optimizadas', (
   for(const p of products){assert.ok(html.includes(`data-product="${p[2]}"`),p[0]);for(const n of [320,512])assert.ok(fs.existsSync(path.join(root,`productos/optimizados/${p[2]}-${n}.webp`)),p[2]);}
 });
 test('las referencias locales de la página existen', () => {
- for(const match of html.matchAll(/(?:src|href)="((?:assets|css|js)\/[^"?#]+)"/g))assert.ok(fs.existsSync(path.join(root,match[1])),match[1]);
+ for(const match of html.matchAll(/(?:src|href)="((?:assets|css|js)\/[^"?#]+)"/g))assert.ok(fs.existsSync(path.join(root,match[1]))||fs.existsSync(path.join(root,'dist',match[1])),match[1]);
 });
 test('la página tiene idioma, metadatos, esquema local y enlace de pedido', () => {
  assert.match(html,/<html lang="es">/);assert.match(html,/<meta name="description"/);assert.match(html,/<h1\b/);assert.match(html,/application\/ld\+json/);assert.match(html,/ubereats\.com/);

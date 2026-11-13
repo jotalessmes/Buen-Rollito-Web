@@ -4,7 +4,7 @@ Web de Buen Rollito, una tienda de chimney cakes en León. Presenta el producto 
 
 ## Ejecutar en local
 
-Se puede abrir `index.html` directamente. Para usar un servidor local:
+Para probar la misma salida estática que publica Vercel:
 
 ```bash
 npm run serve
@@ -22,7 +22,7 @@ npm run build
 npm test
 ```
 
-`npm run build` actualiza la carta incluida en el HTML a partir del catálogo de `js/experiencia.js` y genera `dist/` con los archivos públicos necesarios. Hay que ejecutarlo y guardar `index.html` después de cambiar el catálogo. Las pruebas comprueban los productos, recursos locales, metadatos y sintaxis del JavaScript. GitHub Actions ejecuta estas comprobaciones en `develop` y `main`.
+`npm run build` actualiza la carta incluida en el HTML a partir del catálogo de `js/experiencia.js` y genera `dist/` con los archivos públicos necesarios. También empaqueta Speed Insights en `dist/js/speed-insights.bundle.js`. Hay que ejecutarlo y guardar `index.html` después de cambiar el catálogo. Las pruebas comprueban los productos, recursos locales, metadatos y sintaxis del JavaScript. GitHub Actions ejecuta estas comprobaciones en `develop` y `main`.
 
 Para regenerar las imágenes WebP desde los originales PNG/JPG:
 
@@ -54,7 +54,9 @@ Las imágenes del obrador se generan desde el PNG original a 768, 1000 y 1536 p�
 
 ## Despliegue en Vercel
 
-Importa el repositorio con la raíz del proyecto en la carpeta raíz. `vercel.json` configura el proyecto estático, Node 22, `npm run build` y `dist` como carpeta de salida. La instalación de producción omite dependencias de desarrollo y scripts; `sharp` solo es necesario en desarrollo para regenerar las imágenes, que ya están incluidas en el repositorio. Si el panel tiene configuraciones manuales incompatibles (directorio raíz o comandos), revísalas. Cada cambio en `main` puede iniciar un despliegue automático si la integración Git está activada.
+Importa el repositorio con la raíz del proyecto en la carpeta raíz. `vercel.json` configura el proyecto estático, Node 22, `npm run build` y `dist` como carpeta de salida. La instalación de producción omite dependencias de desarrollo y scripts; `sharp` solo es necesario para regenerar imágenes, que ya están incluidas. `esbuild` empaqueta Speed Insights durante la compilación y el paquete no se envía al navegador como dependencia. Si el panel tiene configuraciones manuales incompatibles (directorio raíz o comandos), revísalas. Cada cambio en `main` puede iniciar un despliegue automático si la integración Git está activada.
+
+Speed Insights se integra con `@vercel/speed-insights`: `js/speed-insights.js` llama a `injectSpeedInsights()` y `scripts/build-site.cjs` lo empaqueta para la web estática. Hay que habilitar **Speed Insights** en el panel del proyecto de Vercel; al publicar una compilación posterior, Vercel servirá la ruta de captura. Los datos de rendimiento aparecerán cuando haya visitas reales y el panel las haya procesado. Esta integración mide Core Web Vitals; no es un contador de visitas ni analítica de conversiones.
 
 Después de asignar un dominio definitivo, configura la URL canónica y el sitemap con ese dominio y verifica la indexación en Google Search Console. No uses como canónica una URL provisional.
 
