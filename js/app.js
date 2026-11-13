@@ -5,12 +5,12 @@ const order='https://www.ubereats.com/es-en/store/buen-rollito-chimney/FR-O0IdEU
 const colors=['#f6c5cc','#cce5c7','#ffe5a7','#c4e7e3','#e7d5ed'];
 function selectProduct(id){
  const product=products.find(p=>p[2]===id); if(!product)return;
- featured.innerHTML=`<div class="featured-image"><span class="featured-label">${product[4]}</span><img src="productos/${product[2]}.png" alt="${product[0]}"></div><div class="featured-info"><div><span class="featured-kicker">TU ELECCIÓN</span><h3>${product[0]}</h3><p>${product[1]} €</p></div><a class="button dark" href="${order}" target="_blank" rel="noopener noreferrer">Pedir en Uber Eats ↗</a></div>`;
+ featured.innerHTML=`<div class="featured-image"><span class="featured-label">${product[4]}</span><img src="productos/${product[2]}.png" alt="${product[0]}"></div><div class="featured-info"><div><span class="featured-kicker">TU ELECCIÓN</span><h3>${product[0]}</h3><p>${product[1]} €</p></div><a class="button dark" href="${order}" target="_blank" rel="noopener noreferrer">Pedir en Uber Eats ›</a></div>`;
  grid.querySelectorAll('button').forEach(button=>{const selected=button.dataset.product===id;button.setAttribute('aria-pressed',String(selected));button.classList.toggle('selected',selected)});
 }
 function render(filter){
  const visible=products.filter(p=>filter==='todos'||p[3]===filter);
- grid.innerHTML=visible.map((p,i)=>`<button type="button" class="product-option" data-product="${p[2]}" aria-pressed="false" style="--card:${colors[i%colors.length]}"><span class="option-image"><img src="productos/${p[2]}.png" alt="" loading="lazy"></span><span class="option-name">${p[0]}<small>${p[1]} €</small></span><span class="option-arrow" aria-hidden="true">↗</span></button>`).join('');
+ grid.innerHTML=visible.map((p,i)=>`<button type="button" class="product-option" data-product="${p[2]}" aria-pressed="false" style="--card:${colors[i%colors.length]}"><span class="option-image"><img src="productos/${p[2]}.png" alt="" loading="lazy"></span><span class="option-name">${p[0]}<small>${p[1]} €</small></span><span class="option-arrow" aria-hidden="true">›</span></button>`).join('');
  grid.scrollTop=0;grid.scrollLeft=0;selectProduct(visible[0][2]);
 }
 grid.addEventListener('click',event=>{const button=event.target.closest('[data-product]');if(button)selectProduct(button.dataset.product)});

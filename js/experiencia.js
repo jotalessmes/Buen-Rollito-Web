@@ -3,8 +3,8 @@ const orderUrl='https://www.ubereats.com/es-en/store/buen-rollito-chimney/FR-O0I
 const list=document.querySelector('#product-list');
 const featured=document.querySelector('#featured');
 const colors=['#f4c9bc','#f2dda4','#cde4c2','#b8ded8','#e4d4e2'];
-function selectProduct(id){const p=products.find(item=>item[2]===id);if(!p)return;featured.innerHTML=`<div class="featured-visual"><span>${p[4]}</span><img src="productos/optimizados/${p[2]}-512.webp" alt="${p[0]}" width="512" height="512" loading="lazy" decoding="async"></div><div class="featured-info"><div><h3>${p[0]}</h3><p>${p[1]} €</p></div><a class="order-btn" href="${orderUrl}" target="_blank" rel="noopener noreferrer">Pedir en Uber Eats ↗</a></div>`;list.querySelectorAll('[data-product]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.product===id)))}
-function render(filter){const items=products.filter(p=>filter==='todos'||p[3]===filter);list.innerHTML=items.map((p,i)=>`<button type="button" class="option" data-product="${p[2]}" aria-pressed="false" style="--color:${colors[i%colors.length]}"><span class="option-img"><img src="productos/optimizados/${p[2]}-320.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="option-name">${p[0]}<small>${p[1]} €</small></span><span class="option-arrow" aria-hidden="true">↗</span></button>`).join('');list.scrollTop=0;list.scrollLeft=0;selectProduct(items[0][2])}
+function selectProduct(id){const p=products.find(item=>item[2]===id);if(!p)return;featured.innerHTML=`<div class="featured-visual"><span>${p[4]}</span><img src="productos/optimizados/${p[2]}-512.webp" alt="${p[0]}" width="512" height="512" loading="lazy" decoding="async"></div><div class="featured-info"><div><h3>${p[0]}</h3><p>${p[1]} €</p></div><a class="order-btn" href="${orderUrl}" target="_blank" rel="noopener noreferrer">Pedir en Uber Eats ›</a></div>`;list.querySelectorAll('[data-product]').forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.product===id)))}
+function render(filter){const items=products.filter(p=>filter==='todos'||p[3]===filter);list.innerHTML=items.map((p,i)=>`<button type="button" class="option" data-product="${p[2]}" aria-pressed="false" style="--color:${colors[i%colors.length]}"><span class="option-img"><img src="productos/optimizados/${p[2]}-320.webp" alt="" width="320" height="320" loading="lazy" decoding="async"></span><span class="option-name">${p[0]}<small>${p[1]} €</small></span><span class="option-arrow" aria-hidden="true">›</span></button>`).join('');list.scrollTop=0;list.scrollLeft=0;selectProduct(items[0][2])}
 list.addEventListener('click',event=>{const button=event.target.closest('[data-product]');if(button)selectProduct(button.dataset.product)});
 document.querySelectorAll('[data-filter]').forEach(button=>button.addEventListener('click',()=>{document.querySelectorAll('[data-filter]').forEach(b=>{b.classList.remove('active');b.setAttribute('aria-pressed','false')});button.classList.add('active');button.setAttribute('aria-pressed','true');render(button.dataset.filter)}));render('todos');
 const track=document.querySelector('#review-track');
@@ -24,7 +24,21 @@ const story=document.querySelector('.story');
 const founderChapter=document.querySelector('#story-founders');
 const storyVisual=document.querySelector('.story-visual');
 let storyFrame=null;
-function updateStory(){const founderVisible=founderChapter.getBoundingClientRect().top <= window.innerHeight*.5;storyVisual.classList.toggle('show-founders',founderVisible);storyVisual.querySelector('.story-product').setAttribute('aria-hidden',String(founderVisible));storyVisual.querySelector('.story-founders-visual').setAttribute('aria-hidden',String(!founderVisible));storyFrame=null}
+function updateStory(){
+ const mobile=matchMedia('(max-width: 600px)').matches;
+ const chapters=[...story.querySelectorAll('.story-chapter')];
+ const visualTop=storyVisual.getBoundingClientRect().top;
+ let active=chapters[0];
+ for(const chapter of chapters){if(chapter.getBoundingClientRect().top<=window.innerHeight*.5)active=chapter}
+ const heading=active.querySelector('.story-heading');
+ const revealProduct=!mobile||heading.getBoundingClientRect().bottom<=visualTop+8;
+ const founderVisible=active===founderChapter;
+ storyVisual.classList.toggle('show-founders',founderVisible);
+ storyVisual.classList.toggle('mobile-product-visible',revealProduct);
+ storyVisual.querySelector('.story-product').setAttribute('aria-hidden',String(founderVisible));
+ storyVisual.querySelector('.story-founders-visual').setAttribute('aria-hidden',String(!founderVisible));
+ storyFrame=null
+}
 function scheduleStory(){if(storyFrame===null)storyFrame=requestAnimationFrame(updateStory)}
 window.addEventListener('scroll',scheduleStory,{passive:true});window.addEventListener('resize',scheduleStory);updateStory();
 if(window.gsap&&window.ScrollTrigger&&!reduceMotion.matches){gsap.registerPlugin(ScrollTrigger);gsap.fromTo('.hero-product img',{rotation:-9,y:30},{rotation:4,y:-18,ease:'none',scrollTrigger:{trigger:'.hero',start:'top top',end:'bottom top',scrub:true}})}
