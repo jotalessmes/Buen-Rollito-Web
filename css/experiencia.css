@@ -124,3 +124,19 @@
 @keyframes order-dialog-in{from{opacity:0;transform:translateY(14px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
 @media(max-width:520px){.order-dialog-actions{grid-template-columns:1fr}.order-dialog-card{padding:34px 24px 26px}.visit-phone{min-height:44px}.mobile-order{border:0;font-family:inherit;font-size:13px;font-weight:800;cursor:pointer}}
 @media(prefers-reduced-motion:reduce){.order-dialog[open]{animation:none}.order-platform{transition:none}}
+
+/* Accessibility refinements: strong focus, touch targets and text contrast. */
+*:focus-visible{outline:3px solid #30241d;outline-offset:3px;box-shadow:0 0 0 6px #fff7e7}
+.skip{position:fixed;left:16px;top:12px;z-index:120;transform:translateY(-160%);min-height:44px;display:inline-flex;align-items:center;border-radius:8px}
+.skip:focus-visible{left:16px;top:12px;transform:translateY(0)}
+.header nav a,.filters button,.loading-skip,.order-dialog-close,.review-write,.review-pause-text,.google-review>a,.visit-links a,footer a,.underlink,.hero-link{min-height:44px}
+.header nav a,.filters button,.loading-skip,.review-write,.review-pause-text,.google-review>a,footer a,.underlink,.hero-link{display:inline-flex;align-items:center}
+.order-dialog-close{width:44px;height:44px}
+.review-write{justify-content:center}
+.google-review>a{padding-top:8px}
+.review-pause-text{padding:5px 8px}
+.process{background:#91432e}
+.process small{opacity:1}
+.section-head h2 em,.creators h2 em,.visit h2 em{color:#a04a31}
+.hero-link:hover{background:#f5c47d}
+@media(forced-colors:active){*:focus-visible{outline:3px solid Highlight;box-shadow:none}}

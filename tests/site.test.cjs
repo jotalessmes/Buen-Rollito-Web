@@ -60,16 +60,19 @@ test('la salida de Vercel contiene la web y sus recursos, sin archivos internos'
 test('la bienvenida muestra el cartel y permite entrar sin esperar', () => {
  const code = fs.readFileSync(path.join(root, 'js/loading.js'), 'utf8');
  const listeners = {};
- const bar = {style:{}};
+  const bar = {style:{},setAttribute(name,value){bar[name]=value}};
  const message = {};
  const skip = {addEventListener(name, fn){listeners.skip=fn}};
  const loading = {classList:{add(name){loading.state=name}},setAttribute(name, value){loading[name]=value}};
  const elements = {'#loading':loading, '#loading-message':message, '#loading-progress':bar, '#loading-skip':skip};
- const context = {document:{querySelector: selector => elements[selector], activeElement:null}, sessionStorage:{getItem(){return null},setItem(){}}, Math, matchMedia:()=>({matches:false}), setTimeout:()=>1, clearTimeout(){}, requestAnimationFrame:()=>1, cancelAnimationFrame(){}};
+  const context = {document:{querySelector: selector => elements[selector], activeElement:null}, Math, matchMedia:()=>({matches:false}), setTimeout:()=>1, clearTimeout(){}, requestAnimationFrame:()=>1, cancelAnimationFrame(){}};
  vm.runInNewContext(code, context, {timeout:1000});
  assert.ok(message.textContent.length > 0);
+  assert.doesNotMatch(code, /sessionStorage|localStorage/);
+  assert.match(html, /role="progressbar"[^>]+aria-valuenow="0"/);
  assert.ok(fs.existsSync(path.join(root,'dist/assets/optimizados/bienvenida-abierto-960.webp')));
  listeners.skip();
  assert.equal(loading.state, 'done');
  assert.equal(loading['aria-hidden'], 'true');
+  assert.equal(bar['aria-valuenow'], '100');
 });

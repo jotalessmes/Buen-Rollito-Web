@@ -10,12 +10,7 @@
     'Preparando algo recién hecho',
     'En León ya huele a buen rollo'
   ];
-  let choice = Math.floor(Math.random() * messages.length);
-  try {
-    const previous = sessionStorage.getItem('buen-rollito-loading-message');
-    if (messages.length > 1 && String(choice) === previous) choice = (choice + 1) % messages.length;
-    sessionStorage.setItem('buen-rollito-loading-message', String(choice));
-  } catch (_) { /* The animation works without storage. */ }
+  const choice = Math.floor(Math.random() * messages.length);
   message.textContent = messages[choice];
   let finished = false;
   let frame;
@@ -26,6 +21,7 @@
     clearTimeout(timer);
     cancelAnimationFrame(frame);
     bar.style.transform = 'scaleX(1)';
+    bar.setAttribute('aria-valuenow', '100');
     loading.classList.add('done');
     loading.setAttribute('aria-hidden', 'true');
     skip.tabIndex = -1;
@@ -36,6 +32,7 @@
     if (startTime === null) startTime = time;
     const progress = Math.min((time - startTime) / 2200, 1);
     bar.style.transform = `scaleX(${progress})`;
+    bar.setAttribute('aria-valuenow', String(Math.round(progress * 100)));
     if (progress >= 1) { finish(); return; }
     frame = requestAnimationFrame(updateProgress);
   }
